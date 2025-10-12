@@ -1,16 +1,13 @@
-# password_creator
+# Password Creator - Support
 
-A new Flutter project.
+Pour toute question concernant Password Creator, contactez-nous :
 
-## Getting Started
+**Email** : alerwann411@email.com
 
-This project is a starting point for a Flutter application.
+## FAQ
 
-A few resources to get you started if this is your first Flutter project:
+**L'app collecte-t-elle des données ?**
+Non, aucune donnée n'est collectée ou stockée.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**L'app nécessite-t-elle Internet ?**
+Non, tout fonctionne hors ligne.
