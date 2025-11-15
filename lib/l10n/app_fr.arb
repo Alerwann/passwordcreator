@@ -1,0 +1,41 @@
+{
+  "appTitle": "Password Creator",
+  "welcome": "WELCOME",
+  "choosePasswordType": "Choisi ton type de mot de passe :",
+  "defaultButton": "Par défaut",
+  "defaultDescription": "(10 caractères dont au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 spécial)",
+  "customButton": "Personnalisé",
+  
+  "configurationTitle": "Configuration",
+  "minimumValuesLabel": "Valeur minimum pour chaque type",
+  "totalCharactersLabel": "Nombre total de caractères",
+  "specialCharactersLabel": "Nombre de caractères spéciaux",
+  "uppercaseLabel": "Nombre de majuscules",
+  "lowercaseLabel": "Nombre de minuscules",
+  "digitsLabel": "Nombre de chiffres",
+  "generateButton": "Générer",
+  
+  "errorTotalTooLow": "Le total ({total}) doit être ≥ à la somme des minimums ({sum})",
+  "@errorTotalTooLow": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "sum": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "errorMinimumLength": "Le mot de passe doit contenir au moins 4 caractères",
+  "errorMaxLength": "Le mot de passe mesure 30 caratère au maximum",
+  
+  "resultTitle": "Création",
+  "yourPassword": "Ton mot de passe :",
+  "copyButton": "Copier",
+  "copiedButton": "Copié !",
+  "regenerateButton": "Regénérer",
+  "passwordRegenerated": "Nouveau mot de passe généré !",
+  
+  "generating": "GÉNÉRATION..."
+}

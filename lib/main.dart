@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:password_creator/calcul_password_service.dart';
-import 'package:password_creator/custom_config_screen.dart';
-import 'package:password_creator/waiting_screen.dart';
+import 'package:password_robust_creator/calcul_password_service.dart';
+import 'package:password_robust_creator/custom_config_screen.dart';
+import 'package:password_robust_creator/l10n/app_localizations.dart';
+import 'package:password_robust_creator/waiting_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Password Creator',
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('fr'), Locale('en')],
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 20, 124, 4),
@@ -39,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         foregroundColor: Colors.black,
-        title: const Text('WELCOME'),
+        title: Text(AppLocalizations.of(context)!.welcome),
       ),
       body: Center(
         child: Container(
@@ -49,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
             spacing: 15,
             children: [
               Text(
-                "Choisi ton type de mot de passe :",
+                AppLocalizations.of(context)!.choosePasswordType,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 30, color: Colors.lightGreenAccent),
               ),
@@ -74,11 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   );
                 },
-                child: Text("Par défaut"),
+                child: Text(AppLocalizations.of(context)!.defaultButton),
               ),
 
               Text(
-                '(10 caractères dont au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 spécial)',
+                AppLocalizations.of(context)!.defaultDescription,
                 style: TextStyle(
                   color: Colors.green.shade700,
                   fontSize: 14,
@@ -96,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   );
                 },
-                child: Text("Personnalisé"),
+                child: Text(AppLocalizations.of(context)!.customButton),
               ),
             ],
           ),

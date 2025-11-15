@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:password_creator/calcul_password_service.dart';
+import 'package:password_robust_creator/calcul_password_service.dart';
+import 'package:password_robust_creator/l10n/app_localizations.dart';
 
 class ResultScreen extends StatefulWidget {
   final String password;
@@ -34,18 +35,38 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   Future<void> _copyToClipboard() async {
-    await Clipboard.setData(ClipboardData(text: _password));
+    try {
+      await Clipboard.setData(ClipboardData(text: _password));
 
-    setState(() {
-      _copied = true;
-    });
+      setState(() {
+        _copied = true;
+      });
 
-    Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Le mot de passe a été copié'),duration: Duration(milliseconds: 750),backgroundColor: Colors.lightGreen,));
+      }
+    } catch (e) {
+        setState(() {
+        _copied = false;
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Le mot de passe n'a pu être copié"),
+            duration: Duration(milliseconds: 750),
+            backgroundColor: const Color.fromARGB(255, 195, 74, 74),
+          ));
+      }
+    }
+
+    Future.delayed(const Duration(milliseconds: 1500), () {
+    
         setState(() {
           _copied = false;
         });
-      }
+  
     });
   }
 
@@ -56,7 +77,7 @@ class _ResultScreenState extends State<ResultScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         foregroundColor: Colors.black,
-        title: const Text('Création'),
+        title: Text(AppLocalizations.of(context)!.resultTitle),
         leading: IconButton(
           onPressed: () {
             Navigator.popUntil(context, (route) => route.isFirst);
@@ -69,7 +90,7 @@ class _ResultScreenState extends State<ResultScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Ton mot de passe :",
+              AppLocalizations.of(context)!.yourPassword,
               style: TextStyle(color: Colors.lightGreenAccent, fontSize: 25),
             ),
             SizedBox(height: 20),
@@ -99,7 +120,8 @@ class _ResultScreenState extends State<ResultScreen> {
             ElevatedButton.icon(
               onPressed: _copyToClipboard,
               icon: Icon(_copied ? Icons.check : Icons.copy),
-              label: Text(_copied ? 'Copié !' : 'Copier'),
+              label: Text(_copied ? AppLocalizations.of(context)!.copyButton : AppLocalizations.of(context)!.copiedButton,
+              ),
             ),
             SizedBox(height: 30),
             ElevatedButton.icon(
@@ -115,15 +137,19 @@ class _ResultScreenState extends State<ResultScreen> {
                   );
                 });
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Nouveau mot de passe généré !'),
+                SnackBar(
+                    content: Text(
+                      AppLocalizations.of(context)!.passwordRegenerated,
+                    ),
                     duration: Duration(seconds: 1),
                     backgroundColor: Colors.green,
                   ),
                 );
               },
               icon: const Icon(Icons.refresh),
-              label: const Text("Regénérer"),
+              label:  Text(
+                AppLocalizations.of(context)!.regenerateButton,
+              ),
             ),
           ],
         ),

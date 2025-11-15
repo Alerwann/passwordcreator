@@ -1,0 +1,41 @@
+{
+  "appTitle": "Password Creator",
+  "welcome": "WELCOME",
+  "choosePasswordType": "Choose your password type:",
+  "defaultButton": "Default",
+  "defaultDescription": "(10 characters with at least 1 uppercase, 1 lowercase, 1 digit, 1 special)",
+  "customButton": "Custom",
+  
+  "configurationTitle": "Configuration",
+  "minimumValuesLabel": "Minimum value for each type",
+  "totalCharactersLabel": "Total number of characters",
+  "specialCharactersLabel": "Number of special characters",
+  "uppercaseLabel": "Number of uppercase letters",
+  "lowercaseLabel": "Number of lowercase letters",
+  "digitsLabel": "Number of digits",
+  "generateButton": "Generate",
+  
+  "errorTotalTooLow": "The total ({total}) must be ≥ to the sum of minimums ({sum})",
+  "@errorTotalTooLow": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "sum": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "errorMinimumLength": "The password must contain at least 4 characters",
+  "errorMaxLength": "The password must be a maximum of 30 characters long. ",
+  
+  "resultTitle": "Creation",
+  "yourPassword": "Your password:",
+  "copyButton": "Copy",
+  "copiedButton": "Copied!",
+  "regenerateButton": "Regenerate",
+  "passwordRegenerated": "New password generated!",
+  
+  "generating": "GENERATING..."
+}

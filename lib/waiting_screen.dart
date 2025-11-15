@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:password_creator/result_screen.dart';
+import 'package:password_robust_creator/l10n/app_localizations.dart';
+import 'package:password_robust_creator/result_screen.dart';
 
 class WaitingScreen extends StatefulWidget {
   final String password;
@@ -109,8 +110,8 @@ class _WaitingScreenState extends State<WaitingScreen> {
                     border: Border.all(color: Colors.green, width: 2),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Text(
-                    'GÉNÉRATION...',
+                  child:  Text(
+                    AppLocalizations.of(context)!.generating,
                     style: TextStyle(
                       color: Colors.green,
                       fontSize: 24,

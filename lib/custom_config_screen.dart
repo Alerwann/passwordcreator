@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:password_creator/calcul_password_service.dart';
-import 'package:password_creator/waiting_screen.dart';
+import 'package:password_robust_creator/calcul_password_service.dart';
+import 'package:password_robust_creator/waiting_screen.dart';
+
+import 'l10n/app_localizations.dart';
 
 class CustomConfigScreen extends StatefulWidget {
   const CustomConfigScreen({super.key});
@@ -15,6 +17,36 @@ class _CustomConfigScreenState extends State<CustomConfigScreen> {
   int numCharSpe = 1;
   int numNum = 2;
   int numMin = 2;
+
+  // Déclare les controllers ici
+  late final TextEditingController _totalController;
+  late final TextEditingController _charSpeController;
+  late final TextEditingController _majController;
+  late final TextEditingController _minController;
+  late final TextEditingController _numController;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialise les controllers une seule fois
+    _totalController = TextEditingController(text: numTotal.toString());
+    _charSpeController = TextEditingController(text: numCharSpe.toString());
+    _majController = TextEditingController(text: numMaj.toString());
+    _minController = TextEditingController(text: numMin.toString());
+    _numController = TextEditingController(text: numNum.toString());
+  }
+
+  @override
+  void dispose() {
+    // Libère la mémoire
+    _totalController.dispose();
+    _charSpeController.dispose();
+    _majController.dispose();
+    _minController.dispose();
+    _numController.dispose();
+    super.dispose();
+  }
+
   void _generatePassword() {
     // Validation
     final total = numTotal;
@@ -25,7 +57,8 @@ class _CustomConfigScreenState extends State<CustomConfigScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Le total ($total) doit être ≥ à la somme des minimums ($sommeMinimums)',
+            AppLocalizations.of(context)!.errorTotalTooLow(total, sommeMinimums)
+          
           ),
           backgroundColor: Colors.red,
         ),
@@ -35,14 +68,22 @@ class _CustomConfigScreenState extends State<CustomConfigScreen> {
 
     if (total < 4) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Le mot de passe doit contenir au moins 4 caractères'),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.errorMinimumLength),
           backgroundColor: Colors.red,
         ),
       );
       return;
     }
-
+    if (total > 30) {
+      ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          content: Text(AppLocalizations.of(context)!.errorMaxLength),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
     // Instance locale ici
     final generator = CalculPasswordService();
     final password = generator.generatePassword(
@@ -76,73 +117,79 @@ class _CustomConfigScreenState extends State<CustomConfigScreen> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         foregroundColor: Colors.black,
-        title: const Text('Configuration'),
+        title: Text(AppLocalizations.of(context)!.configurationTitle),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const Text(
-              'Valeur minimum pour chaque type',
-              style: TextStyle(
-                color: Colors.green,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 30),
-
-            // Champ : Nombre total
-            _buildNumberField(
-              label: 'Nombre total de caractères',
-              value: numTotal,
-              onChanged: (value) => setState(() => numTotal = value),
-            ),
-
-            // Champ : Caractères spéciaux
-            _buildNumberField(
-              label: 'Nombre de caractères spéciaux',
-              value: numCharSpe,
-              onChanged: (value) => setState(() => numCharSpe = value),
-            ),
-
-            // Champ : Majuscules
-            _buildNumberField(
-              label: 'Nombre de majuscules',
-              value: numMaj,
-              onChanged: (value) => setState(() => numMaj = value),
-            ),
-
-            // Champ : Minuscules
-            _buildNumberField(
-              label: 'Nombre de minuscules',
-              value: numMin,
-              onChanged: (value) => setState(() => numMin = value),
-            ),
-
-            // Champ : Chiffres
-            _buildNumberField(
-              label: 'Nombre de chiffres',
-              value: numNum,
-              onChanged: (value) => setState(() => numNum = value),
-            ),
-
-            const SizedBox(height: 40),
-
-            // Bouton Valider
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 50,
-                  vertical: 15,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Text(
+                AppLocalizations.of(context)!.minimumValuesLabel,
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              onPressed: _generatePassword,
-              child: const Text('Générer', style: TextStyle(fontSize: 18)),
-            ),
-          ],
+              const SizedBox(height: 30),
+
+              // Champ : Nombre total
+              _buildNumberField(
+                label: AppLocalizations.of(context)!.totalCharactersLabel,
+                controller: _totalController,
+                onChanged: (value) => setState(() => numTotal = value),
+              ),
+
+              // Champ : Caractères spéciaux
+              _buildNumberField(
+                label: AppLocalizations.of(context)!.specialCharactersLabel,
+                controller: _charSpeController,
+                onChanged: (value) => setState(() => numCharSpe = value),
+              ),
+
+              // Champ : Majuscules
+              _buildNumberField(
+                label: AppLocalizations.of(context)!.uppercaseLabel,
+                controller: _majController,
+                onChanged: (value) => setState(() => numMaj = value),
+              ),
+
+              // Champ : Minuscules
+              _buildNumberField(
+                label: AppLocalizations.of(context)!.lowercaseLabel,
+                controller: _minController,
+                onChanged: (value) => setState(() => numMin = value),
+              ),
+
+              // Champ : Chiffres
+              _buildNumberField(
+                label: AppLocalizations.of(context)!.digitsLabel,
+                controller: _numController,
+                onChanged: (value) => setState(() => numNum = value),
+              ),
+
+              const SizedBox(height: 40),
+
+              // Bouton Valider
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 50,
+                    vertical: 15,
+                  ),
+                ),
+                onPressed: _generatePassword,
+                child:  Text(
+                  AppLocalizations.of(context)!.generateButton, style: TextStyle(fontSize: 18)),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -150,7 +197,7 @@ class _CustomConfigScreenState extends State<CustomConfigScreen> {
 
   Widget _buildNumberField({
     required String label,
-    required int value,
+    required TextEditingController controller,
     required Function(int) onChanged,
   }) {
     return Padding(
@@ -167,7 +214,7 @@ class _CustomConfigScreenState extends State<CustomConfigScreen> {
           const SizedBox(width: 10),
           Expanded(
             child: TextField(
-              controller: TextEditingController(text: value.toString()),
+              controller: controller,
               keyboardType: TextInputType.number,
               style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
@@ -177,6 +224,7 @@ class _CustomConfigScreenState extends State<CustomConfigScreen> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
+
               onChanged: (text) {
                 final newValue = int.tryParse(text);
                 if (newValue != null) {
