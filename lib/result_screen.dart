@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:password_robust_creator/calcul_password_service.dart';
 import 'package:password_robust_creator/l10n/app_localizations.dart';
+import 'package:password_robust_creator/waiting_screen.dart';
 
 class ResultScreen extends StatefulWidget {
   final String password;
@@ -43,30 +44,33 @@ class _ResultScreenState extends State<ResultScreen> {
       });
 
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Le mot de passe a été copié'),duration: Duration(milliseconds: 750),backgroundColor: Colors.lightGreen,));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Le mot de passe a été copié'),
+            duration: Duration(milliseconds: 750),
+            backgroundColor: Colors.lightGreen,
+          ),
+        );
       }
     } catch (e) {
-        setState(() {
+      setState(() {
         _copied = false;
       });
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text("Le mot de passe n'a pu être copié"),
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Le mot de passe n'a pu être copié"),
             duration: Duration(milliseconds: 750),
             backgroundColor: const Color.fromARGB(255, 195, 74, 74),
-          ));
+          ),
+        );
       }
     }
 
     Future.delayed(const Duration(milliseconds: 1500), () {
-    
-        setState(() {
-          _copied = false;
-        });
-  
+      setState(() {
+        _copied = false;
+      });
     });
   }
 
@@ -120,36 +124,41 @@ class _ResultScreenState extends State<ResultScreen> {
             ElevatedButton.icon(
               onPressed: _copyToClipboard,
               icon: Icon(_copied ? Icons.check : Icons.copy),
-              label: Text(_copied ? AppLocalizations.of(context)!.copyButton : AppLocalizations.of(context)!.copiedButton,
+              label: Text(
+                _copied
+                    ? AppLocalizations.of(context)!.copyButton
+                    : AppLocalizations.of(context)!.copiedButton,
               ),
             ),
             SizedBox(height: 30),
             ElevatedButton.icon(
               onPressed: () {
                 final generator = CalculPasswordService();
-                setState(() {
-                  _password = generator.generatePassword(
-                    widget.numMin,
-                    widget.numMaj,
-                    widget.numNum,
-                    widget.numCharSpe,
-                    widget.numTotal,
-                  );
-                });
-                ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                    content: Text(
-                      AppLocalizations.of(context)!.passwordRegenerated,
+
+                _password = generator.generatePassword(
+                  widget.numMin,
+                  widget.numMaj,
+                  widget.numNum,
+                  widget.numCharSpe,
+                  widget.numTotal,
+                );
+
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WaitingScreen(
+                      password: _password,
+                      numMin: widget.numMin,
+                      numMaj: widget.numMaj,
+                      numNum: widget.numNum,
+                      numCharSpe: widget.numCharSpe,
+                      numTotal: widget.numTotal,
                     ),
-                    duration: Duration(seconds: 1),
-                    backgroundColor: Colors.green,
                   ),
                 );
               },
               icon: const Icon(Icons.refresh),
-              label:  Text(
-                AppLocalizations.of(context)!.regenerateButton,
-              ),
+              label: Text(AppLocalizations.of(context)!.regenerateButton),
             ),
           ],
         ),

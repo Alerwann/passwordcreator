@@ -100,146 +100,146 @@ abstract class AppLocalizations {
 
   /// No description provided for @appTitle.
   ///
-  /// In fr, this message translates to:
+  /// In en, this message translates to:
   /// **'Password Creator'**
   String get appTitle;
 
   /// No description provided for @welcome.
   ///
-  /// In fr, this message translates to:
+  /// In en, this message translates to:
   /// **'WELCOME'**
   String get welcome;
 
   /// No description provided for @choosePasswordType.
   ///
-  /// In fr, this message translates to:
-  /// **'Choisi ton type de mot de passe :'**
+  /// In en, this message translates to:
+  /// **'Choose your password type:'**
   String get choosePasswordType;
 
   /// No description provided for @defaultButton.
   ///
-  /// In fr, this message translates to:
-  /// **'Par défaut'**
+  /// In en, this message translates to:
+  /// **'Default'**
   String get defaultButton;
 
   /// No description provided for @defaultDescription.
   ///
-  /// In fr, this message translates to:
-  /// **'(10 caractères dont au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 spécial)'**
+  /// In en, this message translates to:
+  /// **'(10 characters with at least 1 uppercase, 1 lowercase, 1 digit, 1 special)'**
   String get defaultDescription;
 
   /// No description provided for @customButton.
   ///
-  /// In fr, this message translates to:
-  /// **'Personnalisé'**
+  /// In en, this message translates to:
+  /// **'Custom'**
   String get customButton;
 
   /// No description provided for @configurationTitle.
   ///
-  /// In fr, this message translates to:
+  /// In en, this message translates to:
   /// **'Configuration'**
   String get configurationTitle;
 
   /// No description provided for @minimumValuesLabel.
   ///
-  /// In fr, this message translates to:
-  /// **'Valeur minimum pour chaque type'**
+  /// In en, this message translates to:
+  /// **'Minimum value for each type'**
   String get minimumValuesLabel;
 
   /// No description provided for @totalCharactersLabel.
   ///
-  /// In fr, this message translates to:
-  /// **'Nombre total de caractères'**
+  /// In en, this message translates to:
+  /// **'Total number of characters'**
   String get totalCharactersLabel;
 
   /// No description provided for @specialCharactersLabel.
   ///
-  /// In fr, this message translates to:
-  /// **'Nombre de caractères spéciaux'**
+  /// In en, this message translates to:
+  /// **'Number of special characters'**
   String get specialCharactersLabel;
 
   /// No description provided for @uppercaseLabel.
   ///
-  /// In fr, this message translates to:
-  /// **'Nombre de majuscules'**
+  /// In en, this message translates to:
+  /// **'Number of uppercase letters'**
   String get uppercaseLabel;
 
   /// No description provided for @lowercaseLabel.
   ///
-  /// In fr, this message translates to:
-  /// **'Nombre de minuscules'**
+  /// In en, this message translates to:
+  /// **'Number of lowercase letters'**
   String get lowercaseLabel;
 
   /// No description provided for @digitsLabel.
   ///
-  /// In fr, this message translates to:
-  /// **'Nombre de chiffres'**
+  /// In en, this message translates to:
+  /// **'Number of digits'**
   String get digitsLabel;
 
   /// No description provided for @generateButton.
   ///
-  /// In fr, this message translates to:
-  /// **'Générer'**
+  /// In en, this message translates to:
+  /// **'Generate'**
   String get generateButton;
 
   /// No description provided for @errorTotalTooLow.
   ///
-  /// In fr, this message translates to:
-  /// **'Le total ({total}) doit être ≥ à la somme des minimums ({sum})'**
+  /// In en, this message translates to:
+  /// **'The total ({total}) must be ≥ to the sum of minimums ({sum})'**
   String errorTotalTooLow(int total, int sum);
 
   /// No description provided for @errorMinimumLength.
   ///
-  /// In fr, this message translates to:
-  /// **'Le mot de passe doit contenir au moins 4 caractères'**
+  /// In en, this message translates to:
+  /// **'The password must contain at least 4 characters'**
   String get errorMinimumLength;
 
   /// No description provided for @errorMaxLength.
   ///
-  /// In fr, this message translates to:
-  /// **'Le mot de passe mesure 30 caratère au maximum'**
+  /// In en, this message translates to:
+  /// **'The password must be a maximum of 30 characters long. '**
   String get errorMaxLength;
 
   /// No description provided for @resultTitle.
   ///
-  /// In fr, this message translates to:
-  /// **'Création'**
+  /// In en, this message translates to:
+  /// **'Creation'**
   String get resultTitle;
 
   /// No description provided for @yourPassword.
   ///
-  /// In fr, this message translates to:
-  /// **'Ton mot de passe :'**
+  /// In en, this message translates to:
+  /// **'Your password:'**
   String get yourPassword;
 
   /// No description provided for @copyButton.
   ///
-  /// In fr, this message translates to:
-  /// **'Copier'**
+  /// In en, this message translates to:
+  /// **'Copy'**
   String get copyButton;
 
   /// No description provided for @copiedButton.
   ///
-  /// In fr, this message translates to:
-  /// **'Copié !'**
+  /// In en, this message translates to:
+  /// **'Copied!'**
   String get copiedButton;
 
   /// No description provided for @regenerateButton.
   ///
-  /// In fr, this message translates to:
-  /// **'Regénérer'**
+  /// In en, this message translates to:
+  /// **'Regenerate'**
   String get regenerateButton;
 
   /// No description provided for @passwordRegenerated.
   ///
-  /// In fr, this message translates to:
-  /// **'Nouveau mot de passe généré !'**
+  /// In en, this message translates to:
+  /// **'New password generated!'**
   String get passwordRegenerated;
 
   /// No description provided for @generating.
   ///
-  /// In fr, this message translates to:
-  /// **'GÉNÉRATION...'**
+  /// In en, this message translates to:
+  /// **'GENERATING...'**
   String get generating;
 }
 
