@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:password_robust_creator/calcul_password_service.dart';
 import 'package:password_robust_creator/custom_config_screen.dart';
 import 'package:password_robust_creator/l10n/app_localizations.dart';
@@ -6,6 +7,19 @@ import 'package:password_robust_creator/waiting_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
+SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor:
+          Colors.transparent, // Rendre la barre de statut transparente
+      statusBarIconBrightness: Brightness.light, // Icônes de statut claires
+      systemNavigationBarColor:
+          Colors.transparent, // Rendre la barre de navigation transparente
+      systemNavigationBarIconBrightness:
+          Brightness.light, // Icônes de navigation claires
+      systemNavigationBarDividerColor: Colors
+          .transparent, // Rendre la ligne de séparation transparente (remplace l'API obsolète)
+    ),
+  );
   runApp(const MyApp());
 }
 
