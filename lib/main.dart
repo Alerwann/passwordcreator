@@ -65,64 +65,66 @@ class _MyHomePageState extends State<MyHomePage> {
         foregroundColor: Colors.black,
         title: Text(AppLocalizations.of(context)!.welcome),
       ),
-      body: Center(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 15,
-            children: [
-              Text(
-                AppLocalizations.of(context)!.choosePasswordType,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30, color: Colors.lightGreenAccent),
-              ),
-              SizedBox(height: 10),
-
-              ElevatedButton(
-                onPressed: () {
-                  final generator = CalculPasswordService();
-
-                  final password = generator.generateDefaultPassword();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => WaitingScreen(
-                        password: password,
-                        numCharSpe: 1,
-                        numMaj: 1,
-                        numMin: 1,
-                        numNum: 1,
-                        numTotal: 10,
-                      ),
-                    ),
-                  );
-                },
-                child: Text(AppLocalizations.of(context)!.defaultButton),
-              ),
-
-              Text(
-                AppLocalizations.of(context)!.defaultDescription,
-                style: TextStyle(
-                  color: Colors.green.shade700,
-                  fontSize: 14,
-                  fontStyle: FontStyle.italic,
+      body: SafeArea(
+        child: Center(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 15,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.choosePasswordType,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 30, color: Colors.lightGreenAccent),
                 ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CustomConfigScreen(),
-                    ),
-                  );
-                },
-                child: Text(AppLocalizations.of(context)!.customButton),
-              ),
-            ],
+                SizedBox(height: 10),
+        
+                ElevatedButton(
+                  onPressed: () {
+                    final generator = CalculPasswordService();
+        
+                    final password = generator.generateDefaultPassword();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WaitingScreen(
+                          password: password,
+                          numCharSpe: 1,
+                          numMaj: 1,
+                          numMin: 1,
+                          numNum: 1,
+                          numTotal: 10,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text(AppLocalizations.of(context)!.defaultButton),
+                ),
+        
+                Text(
+                  AppLocalizations.of(context)!.defaultDescription,
+                  style: TextStyle(
+                    color: Colors.green.shade700,
+                    fontSize: 14,
+                    fontStyle: FontStyle.italic,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CustomConfigScreen(),
+                      ),
+                    );
+                  },
+                  child: Text(AppLocalizations.of(context)!.customButton),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -89,78 +89,80 @@ class _ResultScreenState extends State<ResultScreen> {
           icon: Icon(Icons.home, color: Colors.black),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.yourPassword,
-              style: TextStyle(color: Colors.lightGreenAccent, fontSize: 25),
-            ),
-            SizedBox(height: 20),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.green, width: 2),
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.green.withValues(alpha: 0.5),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.yourPassword,
+                style: TextStyle(color: Colors.lightGreenAccent, fontSize: 25),
               ),
-              child: Text(
-                _password,
-                style: TextStyle(
-                  fontSize: 30,
-                  letterSpacing: 4,
-                  fontWeight: FontWeight.bold,
+              SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.green, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green.withValues(alpha: 0.5),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  _password,
+                  style: TextStyle(
+                    fontSize: 30,
+                    letterSpacing: 4,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 30),
-            ElevatedButton.icon(
-              onPressed: _copyToClipboard,
-              icon: Icon(_copied ? Icons.check : Icons.copy),
-              label: Text(
-                _copied
-                    ? AppLocalizations.of(context)!.copyButton
-                    : AppLocalizations.of(context)!.copiedButton,
+              SizedBox(height: 30),
+              ElevatedButton.icon(
+                onPressed: _copyToClipboard,
+                icon: Icon(_copied ? Icons.check : Icons.copy),
+                label: Text(
+                  _copied
+                      ? AppLocalizations.of(context)!.copyButton
+                      : AppLocalizations.of(context)!.copiedButton,
+                ),
               ),
-            ),
-            SizedBox(height: 30),
-            ElevatedButton.icon(
-              onPressed: () {
-                final generator = CalculPasswordService();
-
-                _password = generator.generatePassword(
-                  widget.numMin,
-                  widget.numMaj,
-                  widget.numNum,
-                  widget.numCharSpe,
-                  widget.numTotal,
-                );
-
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => WaitingScreen(
-                      password: _password,
-                      numMin: widget.numMin,
-                      numMaj: widget.numMaj,
-                      numNum: widget.numNum,
-                      numCharSpe: widget.numCharSpe,
-                      numTotal: widget.numTotal,
+              SizedBox(height: 30),
+              ElevatedButton.icon(
+                onPressed: () {
+                  final generator = CalculPasswordService();
+        
+                  _password = generator.generatePassword(
+                    widget.numMin,
+                    widget.numMaj,
+                    widget.numNum,
+                    widget.numCharSpe,
+                    widget.numTotal,
+                  );
+        
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => WaitingScreen(
+                        password: _password,
+                        numMin: widget.numMin,
+                        numMaj: widget.numMaj,
+                        numNum: widget.numNum,
+                        numCharSpe: widget.numCharSpe,
+                        numTotal: widget.numTotal,
+                      ),
                     ),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.refresh),
-              label: Text(AppLocalizations.of(context)!.regenerateButton),
-            ),
-          ],
+                  );
+                },
+                icon: const Icon(Icons.refresh),
+                label: Text(AppLocalizations.of(context)!.regenerateButton),
+              ),
+            ],
+          ),
         ),
       ),
     );

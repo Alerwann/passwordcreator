@@ -119,76 +119,78 @@ class _CustomConfigScreenState extends State<CustomConfigScreen> {
         foregroundColor: Colors.black,
         title: Text(AppLocalizations.of(context)!.configurationTitle),
       ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Text(
-                AppLocalizations.of(context)!.minimumValuesLabel,
-                style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 30),
-
-              // Champ : Nombre total
-              _buildNumberField(
-                label: AppLocalizations.of(context)!.totalCharactersLabel,
-                controller: _totalController,
-                onChanged: (value) => setState(() => numTotal = value),
-              ),
-
-              // Champ : Caractères spéciaux
-              _buildNumberField(
-                label: AppLocalizations.of(context)!.specialCharactersLabel,
-                controller: _charSpeController,
-                onChanged: (value) => setState(() => numCharSpe = value),
-              ),
-
-              // Champ : Majuscules
-              _buildNumberField(
-                label: AppLocalizations.of(context)!.uppercaseLabel,
-                controller: _majController,
-                onChanged: (value) => setState(() => numMaj = value),
-              ),
-
-              // Champ : Minuscules
-              _buildNumberField(
-                label: AppLocalizations.of(context)!.lowercaseLabel,
-                controller: _minController,
-                onChanged: (value) => setState(() => numMin = value),
-              ),
-
-              // Champ : Chiffres
-              _buildNumberField(
-                label: AppLocalizations.of(context)!.digitsLabel,
-                controller: _numController,
-                onChanged: (value) => setState(() => numNum = value),
-              ),
-
-              const SizedBox(height: 40),
-
-              // Bouton Valider
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.black,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 50,
-                    vertical: 15,
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.minimumValuesLabel,
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                onPressed: _generatePassword,
-                child:  Text(
-                  AppLocalizations.of(context)!.generateButton, style: TextStyle(fontSize: 18)),
-              ),
-            ],
+                const SizedBox(height: 30),
+        
+                // Champ : Nombre total
+                _buildNumberField(
+                  label: AppLocalizations.of(context)!.totalCharactersLabel,
+                  controller: _totalController,
+                  onChanged: (value) => setState(() => numTotal = value),
+                ),
+        
+                // Champ : Caractères spéciaux
+                _buildNumberField(
+                  label: AppLocalizations.of(context)!.specialCharactersLabel,
+                  controller: _charSpeController,
+                  onChanged: (value) => setState(() => numCharSpe = value),
+                ),
+        
+                // Champ : Majuscules
+                _buildNumberField(
+                  label: AppLocalizations.of(context)!.uppercaseLabel,
+                  controller: _majController,
+                  onChanged: (value) => setState(() => numMaj = value),
+                ),
+        
+                // Champ : Minuscules
+                _buildNumberField(
+                  label: AppLocalizations.of(context)!.lowercaseLabel,
+                  controller: _minController,
+                  onChanged: (value) => setState(() => numMin = value),
+                ),
+        
+                // Champ : Chiffres
+                _buildNumberField(
+                  label: AppLocalizations.of(context)!.digitsLabel,
+                  controller: _numController,
+                  onChanged: (value) => setState(() => numNum = value),
+                ),
+        
+                const SizedBox(height: 40),
+        
+                // Bouton Valider
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 50,
+                      vertical: 15,
+                    ),
+                  ),
+                  onPressed: _generatePassword,
+                  child:  Text(
+                    AppLocalizations.of(context)!.generateButton, style: TextStyle(fontSize: 18)),
+                ),
+              ],
+            ),
           ),
         ),
       ),
